@@ -21,6 +21,7 @@ int o_turn=1;
 int main()
 {
   /*
+  
   int board[3][3];
   int turn=x_turn;
   int x_win=0;
@@ -35,6 +36,7 @@ int main()
 
 void TicTacToe()
 {
+	// initialising variables
   int board[3][3];
   int turn=x_turn;
   int x_win=0;
@@ -47,14 +49,17 @@ void TicTacToe()
   while (keepPlaying==1) {
     for (int r=0; r<3; r++) {
       for (int c=0; c<3; c++) {
+	// when game is restarted, make board blank and make turn x
 	board[r][c]=blank;
 	turn = x_turn;
       }
     }
 
-    while (checkWin(x_move, board)==0 && checkWin(o_move, board)==0 && checkTie(board)==0) {
+    while (checkWin(x_move, board)==0 && checkWin(o_move, board)==0 && checkTie(board)==0) { // while no one has won
 
       printBoard(board);
+
+	    // getting coordinates from user
       cout << "Type the coordinates of your next move." << endl;
       cout << " First type from a-c" << endl;
       
@@ -87,7 +92,7 @@ void TicTacToe()
 	if (board[r][c] != blank) {
 	  cout << "that spot is already taken" << endl;
 	}
-
+	// setting the spot
 	else {
 	  cout << "r is: " << r << " c is: " << c << endl;
 	  if (turn==x_turn) {
@@ -157,7 +162,7 @@ void TicTacToe()
 }
 
 void printBoard(int board[3][3]) 
-{
+{ // prints the board
   //cout << "printing board!" << endl;
   cout << "\t1\t2\t3" << endl;
   // char output[10] = {' '};
@@ -205,7 +210,7 @@ void printBoard(int board[3][3])
 }
 
 int checkWin(int player, int board[3][3])
-{
+{ // checks for wins by looking at every 3 in a row possibility
   // add this (long if statement for every tictactoe spot)
   if (board[0][0]==player && board[0][1]==player && board[0][2]==player || board[0][0]==player && board[1][0]==player && board[2][0]==player || board[0][0]==player && board [1][1]==player && board[2][2]==player || board [0][2]==player && board[1][1]== player && board[2][0]==player || board[1][0]==player && board[1][1]==player && board[1][2]==player || board[2][0]==player && board[2][1]==player && board[2][2]==player || board[0][1]==player && board[1][1]==player && board[2][1]==player || board[0][2]==player && board[1][2]==player && board[2][2]==player) {
     return 1;
@@ -214,7 +219,7 @@ int checkWin(int player, int board[3][3])
 }
 
 int checkTie(int board[3][3])
-{
+{ // checking for ties by checking if board is empty
   for (int r=0; r<3; r++) {
     for (int c=0; c<3; c++) {
       if (board[r][c]==blank) {
